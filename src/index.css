@@ -5,5 +5,9 @@
 
 body {
   font-family: 'Lato', sans-serif;
+  background-color: #EDF0F4;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
 }
 

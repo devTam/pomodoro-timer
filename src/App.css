@@ -1,0 +1,12 @@
+.App {
+    background-color: #fff;
+    width: 70vw;
+    max-width: 250px;
+    height: 80vh;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.7), 0 8px 20px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+

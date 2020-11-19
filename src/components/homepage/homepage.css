@@ -1,0 +1,46 @@
+.text {
+    font-size: 16px;
+    padding: 10px;
+    color: #07345A;
+    font-weight: bold;
+}
+
+.next-btn {
+    display: block;
+    margin: 20px auto;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    background-color:#F47458;
+    cursor: pointer;
+    transition: background-color 250ms;
+    outline-width: 0;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.43);
+}
+
+@keyframes next {
+    to {
+        transform: translateX(5px);
+    }
+}
+
+.next-btn:hover {
+    background-color: #fff;
+    box-shadow: none;
+}
+
+.next-btn:hover .fa-arrow-right {
+    color: #F47458;
+    animation: next .5s infinite alternate;
+}
+
+.next-btn .fa-arrow-right {
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: color .25s;
+}
+
+
+
+
