@@ -13,7 +13,7 @@
     padding: 15px;
     background-color:#F47458;
     cursor: pointer;
-    transition: background-color 250ms;
+    transition: all 250ms;
     outline-width: 0;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.43);
 }

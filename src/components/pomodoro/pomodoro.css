@@ -12,6 +12,7 @@
 
 .pomodoro__buttons {
     margin: 40px auto;
+    margin-bottom: 0;
     display: flex;
     justify-content: center;
     
@@ -106,4 +107,9 @@
 .btn-sec i {
     color: #fff;
     font-size: 18px;
+}
+
+.pomodoro__timer {
+    display: grid;
+    place-items: center;
 }
