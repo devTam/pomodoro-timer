@@ -1,123 +1,123 @@
 .pomodoro h1 {
-    font-size: 25px;
-    text-align: center;
-    margin: 20px 0 10px;
-    color: #F47458;
+  font-size: 25px;
+  text-align: center;
+  margin: 20px 0 10px;
+  color: #f47458;
 }
 
 .pomodoro__timer {
-    height: 50vh;
+  height: 50vh;
 }
 
 .fixed {
-    width: 24px;
-    display: grid;
-    place-items: center;
+  width: 24px;
+  display: grid;
+  place-items: center;
 }
 
 .pomodoro__buttons {
-    margin: 40px auto;
-    margin-bottom: 0;
-    display: flex;
-    justify-content: center;
-    
+  margin: 40px auto;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .btn {
-    display: block;
-    border: none;
-    border-radius: 50%;
-    padding: 15px;
-    background-color:#F47458;
-    cursor: pointer;
-    transition: all 250ms;
-    outline-width: 0;
-    margin: 0 10px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.43);
-    backface-visibility: hidden;
+  display: block;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  background-color: #f47458;
+  cursor: pointer;
+  transition: all 250ms;
+  outline-width: 0;
+  margin: 0 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.43);
+  backface-visibility: hidden;
 }
 
-.btn:hover {
+@media (hover: hover) {
+  .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.43);
+  }
 }
 
 .btn:active {
-    transform: translateY(2px);
+  transform: translateY(2px);
 }
 
 .btn i {
-    color: white;
-    font-size: 15px;
+  color: white;
+  font-size: 15px;
 }
 .pomodoro__settings {
-    position: absolute;
-    bottom: 0;
-    transform: translateY(100%);
-    padding: 10px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background: linear-gradient(210deg, #F95B5B, #FCA9A9 );
-    width: 100%;
-    transition: transform .5s ease-out;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+  padding: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: linear-gradient(210deg, #f95b5b, #fca9a9);
+  width: 100%;
+  transition: transform 0.5s ease-out;
 }
 
 .pomodoro__settings.show {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .close-btn {
-    position: absolute;
-    top: 5px;
-    right: 0;
+  position: absolute;
+  top: 5px;
+  right: 0;
 }
 
 .pomodoro__settings h4 {
-    text-align: center;
-    margin: 5px 0 10px 0;
-    color: #07345A;
-    font-size: 15px;
+  text-align: center;
+  margin: 5px 0 10px 0;
+  color: #07345a;
+  font-size: 15px;
 }
 
-.session-btns, .break-btns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.session-btns,
+.break-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pomodoro__settings span {
-    color: #fff;
-    font-weight: bold;
-    font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .btn-sec {
-    padding: 8px;
-    margin: 0 15px;
-    background-color: inherit;
-    box-shadow: none;
+  padding: 8px;
+  margin: 0 15px;
+  background-color: inherit;
+  box-shadow: none;
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
+  .btn-sec:hover {
+    background-color: initial;
+    box-shadow: none;
+    transform: translateY(0);
+  }
 
-    .btn-sec:hover {
-        background-color: initial;
-        box-shadow: none;
-        transform: translateY(0);
-        
-    }
-    
-    .btn-sec:hover i {
-        color: #07345A;
-    }
+  .btn-sec:hover i {
+    color: #07345a;
+  }
 }
 
 .btn-sec i {
-    color: #fff;
-    font-size: 18px;
+  color: #fff;
+  font-size: 18px;
 }
 
 .pomodoro__timer {
-    display: grid;
-    place-items: center;
+  display: grid;
+  place-items: center;
 }
