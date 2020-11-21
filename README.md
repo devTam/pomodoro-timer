@@ -1,2 +1,2 @@
-[pomodoro.png!](https://postimg.cc/njQfKjJV)
+[pomodoro!](https://i.postimg.cc/9MLXhZg9/pomodoro.png)
 
