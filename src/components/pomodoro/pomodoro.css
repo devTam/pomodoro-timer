@@ -98,15 +98,18 @@
     box-shadow: none;
 }
 
-.btn-sec:hover {
-    background-color: initial;
-    box-shadow: none;
-    transform: translateY(0);
-    
-}
+@media (hover:hover) {
 
-.btn-sec:hover i {
-    color: #07345A;
+    .btn-sec:hover {
+        background-color: initial;
+        box-shadow: none;
+        transform: translateY(0);
+        
+    }
+    
+    .btn-sec:hover i {
+        color: #07345A;
+    }
 }
 
 .btn-sec i {

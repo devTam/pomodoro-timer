@@ -39,10 +39,12 @@ const Clock = ({clockCount, sessionLength, breakLength, title}) => {
           value={value}
           text={formatClock(clockCount)}
           maxValue={100}
+          counterClockwise={true}
           styles={buildStyles({
-            trailColor: '#FEDEDE',
-            pathColor: '#FA6D6D',
+            pathColor: '#FEDEDE',
+            trailColor: '#FA6D6D',
             textColor: 'rgb(68, 60, 60)',
+            strokeLinecap: 'butt'
           })}
         />
       </div>
