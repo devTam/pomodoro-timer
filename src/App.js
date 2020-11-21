@@ -11,9 +11,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/pomodoro">
-              <Pomodoro />
-          </Route>
+          <Route path="/pomodoro" component={Pomodoro} />
         </Switch>
       </Router>
     </div>

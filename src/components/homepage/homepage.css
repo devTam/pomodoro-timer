@@ -5,12 +5,20 @@
     font-weight: bold;
 }
 
-.next-btn {
-    display: block;
+.button {
     margin: 20px auto;
+    display: grid;
+    place-items: center;
+}
+
+.next-btn {
+    text-decoration: none;
+    position: relative;
+    width: 50px;
+    height: 50px;
     border: none;
     border-radius: 50%;
-    padding: 15px;
+    padding: 20px;
     background-color:#F47458;
     cursor: pointer;
     transition: all 250ms;
@@ -18,9 +26,17 @@
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.43);
 }
 
+.next-btn i {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 @keyframes next {
     to {
-        transform: translateX(5px);
+        left: 65%;
     }
 }
 

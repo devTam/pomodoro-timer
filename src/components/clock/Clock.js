@@ -3,7 +3,9 @@ import './clock.css';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const Clock = (props) => {
+const Clock = ({clockCount, sessionLength, breakLength, title}) => {
+
+  // Format clock function
   const formatClock = (clock) => {
     let minutes = Math.floor(clock / 60);
     let seconds = Math.floor(clock % 60);
@@ -12,15 +14,15 @@ const Clock = (props) => {
     return `${minutes}:${seconds}`;
   };
 
+  // Chnage seconds to percentage
   const toPercentage = (initial, final) => {
     return Math.floor((initial/final) * 100)
   }
 
- 
-
-  
+//  Calculate the reduction value of progressbar
   const calculateValue = (clockCount, sessionLength, breakLength, title) => {
-    
+
+    // If in session then calculate reduction value using session length else use break length
     if(title === 'Get to work!') {
       return toPercentage(clockCount, sessionLength*60)
     }else {
@@ -28,15 +30,14 @@ const Clock = (props) => {
     }
   }
 
+  let value = calculateValue(clockCount, sessionLength, breakLength, title);
 
-
-  
   return (
     <div className="clock-body">
       <div className="clock">
         <CircularProgressbar
-          value={calculateValue(props.clockCount, props.sessionLength, props.breakLength, props.title)}
-          text={formatClock(props.clockCount)}
+          value={value}
+          text={formatClock(clockCount)}
           maxValue={100}
           styles={buildStyles({
             trailColor: '#FEDEDE',
@@ -46,7 +47,7 @@ const Clock = (props) => {
         />
       </div>
 
-      <p className="clock-title">{props.title}</p>
+      <p className="clock-title">{title}</p>
     </div>
   );
 };

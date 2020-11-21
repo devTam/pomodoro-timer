@@ -2,14 +2,14 @@ import React from 'react';
 import Clock from '../clock/Clock';
 import "./pomodoro.css";
 
-
+const audio = document.getElementById('beep');
 class Pomodoro extends React.Component {
     timer = undefined;
     state = {
         isPlaying: false,
         breakLength: 5,
         sessionLength: 25,
-        clockCount: 25 * 60,
+        clockCount: 25*60,
         title: 'Get to work!',
         settings: false,
     }
@@ -62,6 +62,7 @@ class Pomodoro extends React.Component {
                         title: (title === 'Get to work!') ? 'Take a break!' : 'Get to work!',
                         clockCount: (title === 'Get to work!') ? (breakLength * 60) : (sessionLength * 60)
                     })
+                    audio.play()
 
                 } else {
 
@@ -85,11 +86,9 @@ class Pomodoro extends React.Component {
             isPlaying: false,
             title: 'Get to work!'
         })
+        audio.pause();
+        audio.currentTime = 0;
     }
-
-
-
-
 
     render() {
         const { clockCount, isPlaying, sessionLength, breakLength, title, settings } = this.state;

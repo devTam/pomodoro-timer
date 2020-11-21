@@ -1,5 +1,6 @@
 import React from 'react';
 import './homepage.css';
+import { Link } from 'react-router-dom';
 
 import { ReactComponent as Image } from '../../pomodoro.svg';
 
@@ -13,12 +14,13 @@ const Homepage = (props) => {
         Pomodoro technique allows you to work for a long time without getting
         tired
       </h1>
-      <button
-        className="next-btn"
-        onClick={() => props.history.push('/pomodoro')}
-      >
+      <div className="button">
+
+      <Link to='/pomodoro'
+        className="next-btn">
         <i className="fas fa-arrow-right"></i>
-      </button>
+      </Link>
+      </div>
     </>
   );
 };
