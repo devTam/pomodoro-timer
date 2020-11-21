@@ -1,19 +1,29 @@
+import React from 'react';
+import {Switch, Route, useLocation } from 'react-router-dom'
 import './App.css';
 import Homepage from './components/homepage/Homepage';
 import Pomodoro from './components/pomodoro/Pomodoro';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion';
 
 
 function App() {
 
+  let location = useLocation()
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/pomodoro" component={Pomodoro} />
+     
+     <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.key} >
+          <Route path="/pomodoro">
+            <Pomodoro />
+          </Route>
+          <Route path="/">
+            <Homepage />
+          </Route>
         </Switch>
-      </Router>
+      </AnimatePresence>
+      
+      
     </div>
   );
 }

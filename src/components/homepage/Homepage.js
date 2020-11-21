@@ -3,10 +3,32 @@ import './homepage.css';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as Image } from '../../pomodoro.svg';
+import { motion } from 'framer-motion';
 
-const Homepage = (props) => {
+const Homepage = () => {
+  const containerVariants = {
+    hidden: {
+      opacity: 0
+    },
+    visible: {
+      opacity: 1
+    },
+    exit: {
+      x: '-100vw',
+      transition: {
+        ease: 'easeInOut',
+        duration: .5
+      }
+    }
+  }
+
   return (
-    <>
+    <motion.div className="homepage"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
       <div className="image">
         <Image />
       </div>
@@ -16,12 +38,12 @@ const Homepage = (props) => {
       </h1>
       <div className="button">
 
-      <Link to='/pomodoro'
-        className="next-btn">
-        <i className="fas fa-arrow-right"></i>
-      </Link>
+        <Link to='/pomodoro'
+          className="next-btn">
+          <i className="fas fa-arrow-right"></i>
+        </Link>
       </div>
-    </>
+    </motion.div>
   );
 };
 

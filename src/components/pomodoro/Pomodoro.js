@@ -1,18 +1,23 @@
 import React from 'react';
 import Clock from '../clock/Clock';
 import "./pomodoro.css";
+import { motion } from "framer-motion";
 
 const audio = document.getElementById('beep');
 class Pomodoro extends React.Component {
+
+
     timer = undefined;
     state = {
         isPlaying: false,
         breakLength: 5,
         sessionLength: 25,
-        clockCount: 25*60,
+        clockCount: 25 * 60,
         title: 'Get to work!',
         settings: false,
     }
+
+    audioRef = React.createRef()
 
     handleChange = (num, type) => {
         const { sessionLength, breakLength, isPlaying } = this.state
@@ -62,7 +67,7 @@ class Pomodoro extends React.Component {
                         title: (title === 'Get to work!') ? 'Take a break!' : 'Get to work!',
                         clockCount: (title === 'Get to work!') ? (breakLength * 60) : (sessionLength * 60)
                     })
-                    audio.play()
+                    this.audioRef.current.play()
 
                 } else {
 
@@ -86,22 +91,32 @@ class Pomodoro extends React.Component {
             isPlaying: false,
             title: 'Get to work!'
         })
-        audio.pause();
-        audio.currentTime = 0;
+        this.audioRef.current.pause();
+        this.audioRef.current.currentTime = 0;
     }
 
     render() {
         const { clockCount, isPlaying, sessionLength, breakLength, title, settings } = this.state;
 
         return (
-            <div className="pomodoro">
+            <motion.div className="pomodoro"
+                exit={{ x: '100vw', transition: { ease: 'easeInOut', duration: .5 } }}
+            >
                 <h1>Pomodoro</h1>
+                <audio ref={this.audioRef} src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" id="beep" preload="auto"></audio>
 
-                <div className="pomodoro__timer">
+                <motion.div className="pomodoro__timer"
+                    initial={{ x: '100vw', opacity: 0 }}
+                    animate={{ x: 0, opacity: 1, transition: { duration: 1, type: 'spring', delay: .2 } }}
+
+                >
                     <Clock clockCount={clockCount} title={title} sessionLength={sessionLength} breakLength={breakLength} />
-                </div>
+                </motion.div>
 
-                <div className="pomodoro__buttons">
+                <motion.div className="pomodoro__buttons"
+                    initial={{ x: '100vw', opacity: 0 }}
+                    animate={{ x: 0, opacity: 1, transition: { duration: 1, type: 'spring', delay: .2 } }}
+                >
                     <button className="btn" onClick={() => this.setState({
                         settings: true
                     })} >
@@ -113,7 +128,7 @@ class Pomodoro extends React.Component {
                     <button className="btn" onClick={this.resetTimer}>
                         <i className="fas fa-sync-alt"></i>
                     </button>
-                </div>
+                </motion.div>
 
                 <div className={`pomodoro__settings ${settings ? "show" : ""}`}>
                     <div className="session">
@@ -149,7 +164,7 @@ class Pomodoro extends React.Component {
                         <i className="fas fa-times"></i>
                     </button>
                 </div>
-            </div>
+            </motion.div>
         )
     }
 }
