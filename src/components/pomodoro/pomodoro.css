@@ -6,8 +6,13 @@
 }
 
 .pomodoro__timer {
-    background-color: #EDF0F4;
     height: 50vh;
+}
+
+.fixed {
+    width: 24px;
+    display: grid;
+    place-items: center;
 }
 
 .pomodoro__buttons {

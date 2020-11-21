@@ -1,99 +1,158 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Clock from '../clock/Clock';
 import "./pomodoro.css";
 
-const Pomodoro = () => {
 
-    const [showSettings, setShowSettings] = useState(false);
-    const [isPlaying, setIsPlaying] = useState(false);
-    let [sessionLength, setSessionLength] = useState(25);
-    const [breakLength, setBreakLength] = useState(5);
-    const [clockCounter, setClockCounter] = useState(25*60);
-    const [title, setTitle] = useState('Get to work!');
-    // Take a break
+class Pomodoro extends React.Component {
+    timer = undefined;
+    state = {
+        isPlaying: false,
+        breakLength: 5,
+        sessionLength: 25,
+        clockCount: 25 * 60,
+        title: 'Get to work!',
+        settings: false,
+    }
 
+    handleChange = (num, type) => {
+        const { sessionLength, breakLength, isPlaying } = this.state
 
-    const handleChange = (num, type) => {
         let sessionCount;
         let breakCount;
-        if(type == "session" )  {
+        if (type === "session") {
             sessionCount = sessionLength + num;
-        }else {
+
+        } else {
             breakCount = breakLength + num;
-        }  
-        
-        if(sessionCount > 0 && sessionCount < 61 && !isPlaying) {
-            setSessionLength(sessionCount);
-            setClockCounter(sessionCount * 60);
         }
-        
-        if(breakCount > 0 && breakCount < 61 && !isPlaying) {
-            setBreakLength(breakCount);
+
+        if (sessionCount > 0 && sessionCount < 61 && !isPlaying) {
+            this.setState({
+                sessionLength: sessionCount,
+                clockCount: sessionCount * 60
+            })
+        }
+
+        if (breakCount > 0 && breakCount < 61 && !isPlaying) {
+            this.setState({
+                breakLength: breakCount
+            })
         }
     }
 
-    const resetTimer = () => {
-        setSessionLength(25);
-        setClockCounter(25*60)
-        setBreakLength(5)
-        setIsPlaying(false)
-        setTitle('Get to work!')
+
+    handlePlayPause = () => {
+        const { isPlaying } = this.state;
+
+        if (isPlaying) {
+            clearInterval(this.timer);
+            this.setState({
+                isPlaying: false
+            })
+        } else {
+            this.setState({
+                isPlaying: true
+            })
+
+            this.timer = setInterval(() => {
+                const { clockCount, title, breakLength, sessionLength } = this.state;
+                if (clockCount === 0) {
+
+                    this.setState({
+                        title: (title === 'Get to work!') ? 'Take a break!' : 'Get to work!',
+                        clockCount: (title === 'Get to work!') ? (breakLength * 60) : (sessionLength * 60)
+                    })
+
+                } else {
+
+                    this.setState({
+                        clockCount: clockCount - 1
+
+                    })
+
+                }
+
+            }, 1000)
+        }
     }
 
-    return (
-        <div className="pomodoro">
-            <h1>Pomodoro</h1>
+    resetTimer = () => {
+        clearInterval(this.timer);
+        this.setState({
+            sessionLength: 25,
+            clockCount: 25 * 60,
+            breakLength: 5,
+            isPlaying: false,
+            title: 'Get to work!'
+        })
+    }
 
-            <div className="pomodoro__timer">
-                <Clock clockCounter={clockCounter} title={title} />
-            </div>
 
-            <div className="pomodoro__buttons">
-                <button className="btn" onClick={() => setShowSettings(true)} >
-                    <i className="fas fa-cog"></i>
-                </button>
-                <button className="btn">
-                    <i className={`fas fa-${isPlaying ? "pause" : "play"}`}></i>
-                </button>
-                <button className="btn" onClick={resetTimer}>
-                    <i className="fas fa-sync-alt"></i>
-                </button>
-            </div>
 
-            <div className={`pomodoro__settings ${showSettings ? "show" : ""}`}>
-                <div className="session">
-                    <h4>Session length</h4>
-                    <div className="session-btns">
 
-                        <button className="btn btn-sec" onClick={() => handleChange(-1, "session")} >
-                            <i className="fas fa-arrow-down"></i>
-                        </button>
-                        <span>{sessionLength}</span>
-                        <button className="btn btn-sec" onClick={() => handleChange(1, "session")}>
-                            <i className="fas fa-arrow-up"></i>
-                        </button>
-                    </div>
+
+    render() {
+        const { clockCount, isPlaying, sessionLength, breakLength, title, settings } = this.state;
+
+        return (
+            <div className="pomodoro">
+                <h1>Pomodoro</h1>
+
+                <div className="pomodoro__timer">
+                    <Clock clockCount={clockCount} title={title} sessionLength={sessionLength} breakLength={breakLength} />
                 </div>
 
-                <div className="break">
-                    <h4>Break length</h4>
-                    <div className="break-btns">
-
-                        <button className="btn btn-sec" onClick={() => handleChange(-1, "break")}>
-                            <i className="fas fa-arrow-down"></i>
-                        </button>
-                        <span>{breakLength}</span>
-                        <button className="btn btn-sec" onClick={() => handleChange(1, "break")}>
-                            <i className="fas fa-arrow-up"></i>
-                        </button>
-                    </div>
+                <div className="pomodoro__buttons">
+                    <button className="btn" onClick={() => this.setState({
+                        settings: true
+                    })} >
+                        <i className="fas fa-cog"></i>
+                    </button>
+                    <button className="btn" onClick={this.handlePlayPause}>
+                        <i className={`fas fa-${isPlaying ? "pause" : "play"}`}></i>
+                    </button>
+                    <button className="btn" onClick={this.resetTimer}>
+                        <i className="fas fa-sync-alt"></i>
+                    </button>
                 </div>
-                <button className="btn btn-sec close-btn" onClick={() => setShowSettings(false)}>
-                    <i className="fas fa-times"></i>
-                </button>
+
+                <div className={`pomodoro__settings ${settings ? "show" : ""}`}>
+                    <div className="session">
+                        <h4>Session length</h4>
+                        <div className="session-btns">
+
+                            <button className="btn btn-sec" onClick={() => this.handleChange(-1, "session")} >
+                                <i className="fas fa-arrow-down"></i>
+                            </button>
+                            <span className="fixed">{sessionLength}</span>
+                            <button className="btn btn-sec" onClick={() => this.handleChange(1, "session")}>
+                                <i className="fas fa-arrow-up"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="break">
+                        <h4>Break length</h4>
+                        <div className="break-btns">
+
+                            <button className="btn btn-sec" onClick={() => this.handleChange(-1, "break")}>
+                                <i className="fas fa-arrow-down"></i>
+                            </button>
+                            <span className="fixed">{breakLength}</span>
+                            <button className="btn btn-sec" onClick={() => this.handleChange(1, "break")}>
+                                <i className="fas fa-arrow-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button className="btn btn-sec close-btn" onClick={() => this.setState({
+                        settings: false
+                    })}>
+                        <i className="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Pomodoro;
