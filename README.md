@@ -1,2 +1,2 @@
-[Pomodoro timer](https://i.postimg.cc/9MLXhZg9/pomodoro.png)
+[pomodoro.png](https://postimg.cc/njQfKjJV)
 
