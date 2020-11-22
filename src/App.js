@@ -16,7 +16,7 @@ function App() {
     >
      
      <AnimatePresence exitBeforeEnter>
-        <Switch location={location} key={location.key} >
+        <Switch location={location} key={location.pathname} >
           <Route path="/pomodoro">
             <Pomodoro />
           </Route>

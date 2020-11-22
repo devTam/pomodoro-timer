@@ -3,7 +3,6 @@ import Clock from '../clock/Clock';
 import "./pomodoro.css";
 import { motion } from "framer-motion";
 
-const audio = document.getElementById('beep');
 class Pomodoro extends React.Component {
 
 
@@ -100,14 +99,14 @@ class Pomodoro extends React.Component {
 
         return (
             <motion.div className="pomodoro"
-                exit={{ x: '100vw', transition: { ease: 'easeInOut', duration: .5 } }}
+                exit={{ x: '100vw', transition: { ease: 'linear', duration: .6 } }}
             >
                 <h1>Pomodoro</h1>
                 <audio ref={this.audioRef} src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" id="beep" preload="auto"></audio>
 
                 <motion.div className="pomodoro__timer"
                     initial={{ x: '100vw', opacity: 0 }}
-                    animate={{ x: 0, opacity: 1, transition: { duration: 1, type: 'spring', delay: .2 } }}
+                    animate={{ x: 0, opacity: 1, transition: { duration: .6, type: 'tween', delay: .2 } }}
 
                 >
                     <Clock clockCount={clockCount} title={title} sessionLength={sessionLength} breakLength={breakLength} />
@@ -115,7 +114,7 @@ class Pomodoro extends React.Component {
 
                 <motion.div className="pomodoro__buttons"
                     initial={{ x: '100vw', opacity: 0 }}
-                    animate={{ x: 0, opacity: 1, transition: { duration: 1, type: 'spring', delay: .2 } }}
+                    animate={{ x: 0, opacity: 1, transition: { duration: .6, type: 'tween', delay: .2 } }}
                 >
                     <button className="btn" onClick={() => this.setState({
                         settings: true

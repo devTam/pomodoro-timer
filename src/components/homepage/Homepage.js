@@ -8,16 +8,23 @@ import { motion } from 'framer-motion';
 const Homepage = () => {
   const containerVariants = {
     hidden: {
-      opacity: 0
+      opacity: 0,
+      x: '-100vw'
+      
     },
     visible: {
-      opacity: 1
+      opacity: 1,
+      x: 0,
+      transition: {
+        ease: 'linear',
+        duration: .6,
+      }
     },
     exit: {
       x: '-100vw',
       transition: {
-        ease: 'easeInOut',
-        duration: .5
+        ease: 'linear',
+        duration: .6
       }
     }
   }
